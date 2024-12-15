@@ -12,12 +12,12 @@ import java.util.List;
 public abstract class Session {
     private LocalDateTime date;
     private Instructor instructor;
-    private List<ForumType> forum;
+    private ForumType forum;
     private List<Client> clientsList = new ArrayList<>();
     private String sessionType;
     private int price;
 
-    public Session(LocalDateTime date, Instructor instructor, List<ForumType> forum, String sessionType, int price) {
+    public Session(LocalDateTime date, Instructor instructor, ForumType forum, String sessionType, int price) {
         this.date = date;
         this.instructor = instructor;
         this.forum = forum;
@@ -33,7 +33,7 @@ public abstract class Session {
         return sessionType;
     }
 
-    public List<ForumType> getForum() {
+    public ForumType getForum() {
         return forum;
     }
 

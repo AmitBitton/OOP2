@@ -13,7 +13,10 @@ public class Gym {
     private List<Client> clients = new ArrayList<>();
     private List<Instructor> instructors = new ArrayList<>();
     private List<Session> sessions = new ArrayList<>();
+    private List<Secretary> secretaries= new ArrayList<>();
     private int gymBalance;
+    private List<String> actionsHistory;
+
 
     private Gym() {
     }
@@ -55,10 +58,10 @@ public class Gym {
 
     public void setSecretary(Person p1, int salary) {
         if (this.secretary != null) {
-            //לחסום את המזכירה הישנה.
+        secretaries.add(this.secretary);
         }
         this.secretary = new Secretary(p1, salary);
-        System.out.println("A new secretary has started working at the gym: " + this.getSecretary().getName());
+        this.secretaries.add(secretary);
     }
 
     public Secretary getSecretary() {
@@ -69,7 +72,7 @@ public class Gym {
         this.clients.add(client);
     }
 
-    public void removeClient(Client client) {
+    protected void removeClient(Client client) {
         if (clients.contains(client)) {
             this.clients.remove(client);
         }
@@ -79,5 +82,15 @@ public class Gym {
     }
     public List<Instructor> getInstructors(){
         return this.instructors;
+    }
+    public void addAction(String action){
+        actionsHistory.add(action);
+    }
+
+    public List<String> getActionsHistory() {
+        return actionsHistory;
+    }
+    public List<Client>getClients(){
+        return this.clients;
     }
 }
