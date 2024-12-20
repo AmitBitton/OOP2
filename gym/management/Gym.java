@@ -4,7 +4,9 @@ import gym.customers.*;
 import gym.management.Sessions.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Gym {
     private static Gym instance;
@@ -15,10 +17,12 @@ public class Gym {
     private List<Session> sessions = new ArrayList<>();
     private List<Secretary> secretaries= new ArrayList<>();
     private int gymBalance;
-    private List<String> actionsHistory;
-
+    private List<String> actionsHistory=new ArrayList<>();
+    private Map<Integer,Integer> balanceIDMap=new HashMap<>();
+    private Notifyer notifyer= new Notifyer();
 
     private Gym() {
+        this.name="CrossFit";
     }
 
     public static Gym getInstance() {
@@ -31,7 +35,25 @@ public class Gym {
     public void setName(String name) {
         this.name = name;
     }
+    public void setGymBalance(int balance){
+        this.gymBalance=balance;
+    }
+    public void addToGymBalance(int num){
+        setGymBalance(this.gymBalance+num);
+    }
+    public void addPerson(Person person) {
+        balanceIDMap.put(person.getId(), person.getBalance());
+    }
+    public Map<Integer, Integer> getPeopleIDMap() {
+        return balanceIDMap;
+    }
+    public int getBalanceById(int id) {
+        return balanceIDMap.getOrDefault(id, 0);
+    }
 
+    public Notifyer getNotifyer(){
+        return this.notifyer;
+}
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gym Name: ").append(name).append("\n");
@@ -52,7 +74,7 @@ public class Gym {
         return sb.toString();
     }
 
-    private int getGymBalance() {
+    public int getGymBalance() {
         return this.gymBalance;
     }
 
@@ -93,4 +115,8 @@ public class Gym {
     public List<Client>getClients(){
         return this.clients;
     }
+    public void updateGymBalance(int newBalance){
+        this.gymBalance=newBalance;
+    }
+
 }

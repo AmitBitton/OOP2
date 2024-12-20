@@ -1,19 +1,21 @@
 package gym.customers;
 
 import gym.Exception.InvalidAgeException;
+import gym.management.Observer;
 import gym.management.Sessions.ForumType;
 import gym.management.Sessions.Session;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Client extends Person {
+public class Client  extends Person implements Observer {
     private List <Session> sessions;
     private List <String> notifications;
     private List <ForumType> forumTypes;
+    private int balance;
 
-    public Client(String name, int balance, Gender gender, String birthDate) throws InvalidAgeException {
-        super(name, balance, gender, birthDate);
+    public Client(Person person) throws InvalidAgeException {
+        super(person);
         if (this.age<18){   //check if the person can be a client in the gym
             throw new InvalidAgeException();
         }
@@ -29,9 +31,24 @@ public class Client extends Person {
         }
         else this.forumTypes.add(ForumType.Male);
     }
+    public int getBalance(){return this.balance;}
+    public void setBalance(int balance){
+        this.balance=balance;
+    }
+    public void addSession(Session session){
+        sessions.add(session);
+    }
+    public void removeSession(Session session){
+        sessions.remove(session);
+    }
 
     public String getName() {
         return super.getName();
+    }
+    @Override
+    public void update(String notification){
+        notifications.add(this.name + " received notification: " + notification);
+
     }
 
     public String getNotifications() {
@@ -40,6 +57,18 @@ public class Client extends Person {
     public  List<ForumType> getforumType(){
      return forumTypes;
     }
+    public List<Session> getSessions(){
+        return this.sessions;
+    }
+    public void deductBalance(int price) {
+        int updateBalance= this.balance-price;
+       this.balance=updateBalance;
+    }
+
+    public void addBalance(int amount) {
+        balance += amount;
+    }
+
     public String toString(){
          return ("ID: " + this.getId() + " | " +
                 "Name: " + this.getName() + " | " +

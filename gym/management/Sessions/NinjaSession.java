@@ -10,4 +10,10 @@ public class NinjaSession extends Session {
     public NinjaSession(LocalDateTime date, Instructor instructor, ForumType forumType) {
         super(date, instructor, forumType, SessionType.Ninja, 150);
     }
+    public int getMaxParticipants(){
+        return 5;
+    }
+    public int getPrice(){
+        return 150;
+    }
 }

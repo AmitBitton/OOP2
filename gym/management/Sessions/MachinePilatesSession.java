@@ -10,4 +10,10 @@ public class MachinePilatesSession extends Session {
     public MachinePilatesSession(LocalDateTime date, Instructor instructor, ForumType forumType) {
         super(date, instructor, forumType, SessionType.MachinePilates, 80);
     }
+    public int getMaxParticipants(){
+        return 10;
+    }
+    public int getPrice(){
+        return 80;
+    }
 }

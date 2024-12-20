@@ -13,7 +13,7 @@ public abstract class Session {
     private LocalDateTime date;
     private Instructor instructor;
     private ForumType forum;
-    private List<Client> clientsList = new ArrayList<>();
+    private List<Client> clientsList;
     private String sessionType;
     private int price;
 
@@ -23,9 +23,12 @@ public abstract class Session {
         this.forum = forum;
         this.sessionType = sessionType;
         this.price = price;
-    }
+        this.clientsList=new ArrayList<>();
 
-    public LocalDateTime getDate() {
+    }
+    public abstract int getMaxParticipants();
+
+        public LocalDateTime getDate() {
         return this.date;
     }
 
@@ -42,12 +45,27 @@ public abstract class Session {
     }
 
     public List<Client> getRegisteredClients() {
+
+        if (clientsList==null){
+            clientsList= new ArrayList<>();
+        }
         return clientsList;
     }
 
     public int getNumRegistered() { return clientsList.size(); }
+    public boolean canRegister(){
+        return getNumRegistered()<getMaxParticipants();
+    }
 
     public int getPrice() {
         return this.price;
     }
+    public String toString(){
+        return ("Session Type: " + this.sessionType + " | " +
+                "Date: " + this.date + " | " +
+                "Forum: " + this.forum + " | " +
+                "Instructor: " + this.instructor.getName() + " | " +
+                "Participants: " + this.clientsList.size()+"/"+this.getMaxParticipants() );
+    }
+
 }

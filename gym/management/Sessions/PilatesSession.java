@@ -11,4 +11,10 @@ public class PilatesSession extends Session {
     public PilatesSession(LocalDateTime date, Instructor instructor, ForumType forumType) {
         super(date, instructor, forumType, SessionType.Pilates, 60);
     }
+    public int getMaxParticipants(){
+        return 30;
+    }
+    public int getPrice(){
+        return 60;
+    }
 }

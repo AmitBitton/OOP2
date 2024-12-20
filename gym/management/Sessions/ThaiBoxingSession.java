@@ -10,4 +10,10 @@ public class ThaiBoxingSession extends Session {
     public ThaiBoxingSession(LocalDateTime date, Instructor instructor, ForumType forumType) {
         super(date, instructor, forumType, SessionType.ThaiBoxing, 100);
     }
+    public int getMaxParticipants(){
+        return 20;
+    }
+    public int getPrice(){
+        return 100;
+    }
 }

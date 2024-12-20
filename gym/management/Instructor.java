@@ -22,7 +22,7 @@ public class Instructor extends Person {
                 "Gender: " + this.getGender() + " | " +
                 "Birthday: " + this.getBirthDate() + " | " +
                 "Age: " + this.age + " | " +
-                "Balance: " + this.getBalance()) +
+                "Balance: " + this.getBalance()) +" | " +
                "Role: Instructor | " +
                "Salary per Hour: " + this.salaryPerHour + " | " +
                "Certified Classes: " + String.join(", ", certifiedClasses.toString());
@@ -30,4 +30,9 @@ public class Instructor extends Person {
     public List<String> getCertifiedClassescertifiedClasses(){
         return this.certifiedClasses;
     }
+    public int getSalaryPerHour(){
+        return this.salaryPerHour;
+    }
+
+
 }
