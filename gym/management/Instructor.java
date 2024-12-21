@@ -25,7 +25,7 @@ public class Instructor extends Person {
                 "Balance: " + this.getBalance()) +" | " +
                "Role: Instructor | " +
                "Salary per Hour: " + this.salaryPerHour + " | " +
-               "Certified Classes: " + String.join(", ", certifiedClasses.toString());
+               "Certified Classes: " + String.join(", ", certifiedClasses);
     }
     public List<String> getCertifiedClassescertifiedClasses(){
         return this.certifiedClasses;

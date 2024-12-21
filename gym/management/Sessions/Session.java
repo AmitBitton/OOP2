@@ -1,5 +1,6 @@
 package gym.management.Sessions;
 
+import gym.DateUtils;
 import gym.Exception.DuplicateClientException;
 import gym.Exception.InvalidAgeException;
 import gym.customers.Client;
@@ -23,12 +24,13 @@ public abstract class Session {
         this.forum = forum;
         this.sessionType = sessionType;
         this.price = price;
-        this.clientsList=new ArrayList<>();
+        this.clientsList = new ArrayList<>();
 
     }
+
     public abstract int getMaxParticipants();
 
-        public LocalDateTime getDate() {
+    public LocalDateTime getDate() {
         return this.date;
     }
 
@@ -46,26 +48,39 @@ public abstract class Session {
 
     public List<Client> getRegisteredClients() {
 
-        if (clientsList==null){
-            clientsList= new ArrayList<>();
+        if (clientsList == null) {
+            clientsList = new ArrayList<>();
         }
         return clientsList;
     }
 
-    public int getNumRegistered() { return clientsList.size(); }
-    public boolean canRegister(){
-        return getNumRegistered()<getMaxParticipants();
+    public int getNumRegistered() {
+        return clientsList.size();
+    }
+
+    public boolean canRegister() {
+        return getNumRegistered() < getMaxParticipants();
     }
 
     public int getPrice() {
         return this.price;
     }
-    public String toString(){
+
+    public boolean isRegisterForSession(Client client) {
+        for (Client c : clientsList) {
+            if (c.getId() == client.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String toString() {
         return ("Session Type: " + this.sessionType + " | " +
-                "Date: " + this.date + " | " +
+                "Date: " + this.date.format(DateUtils.formatter) + " | " +
                 "Forum: " + this.forum + " | " +
                 "Instructor: " + this.instructor.getName() + " | " +
-                "Participants: " + this.clientsList.size()+"/"+this.getMaxParticipants() );
+                "Participants: " + this.clientsList.size() + "/" + this.getMaxParticipants());
     }
 
 }

@@ -3,10 +3,7 @@ package gym.management;
 import gym.customers.*;
 import gym.management.Sessions.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Gym {
     private static Gym instance;
@@ -35,20 +32,34 @@ public class Gym {
     public void setName(String name) {
         this.name = name;
     }
-    public void setGymBalance(int balance){
+    protected void setGymBalance(int balance){
         this.gymBalance=balance;
     }
-    public void addToGymBalance(int num){
+    protected void addToGymBalance(int num){
         setGymBalance(this.gymBalance+num);
+    }
+    protected void deductGymBalance(int num){
+        setGymBalance(this.gymBalance-num);
     }
     public void addPerson(Person person) {
         balanceIDMap.put(person.getId(), person.getBalance());
     }
+    public void updatePersonBalance(int id, int balance) {
+        balanceIDMap.put(id, balance);
+    }
     public Map<Integer, Integer> getPeopleIDMap() {
         return balanceIDMap;
     }
-    public int getBalanceById(int id) {
-        return balanceIDMap.getOrDefault(id, 0);
+    public int getBalanceById(int id) throws NullPointerException {
+        int balance;
+        try {
+            balance = balanceIDMap.get(id);
+        }
+        catch (Exception e)
+        {
+            throw new NullPointerException("No Person With This Id Yet.");
+        }
+        return balance;
     }
 
     public Notifyer getNotifyer(){
@@ -67,6 +78,7 @@ public class Gym {
         for (Instructor instructor : instructors) {
             sb.append(instructor.toString()).append("\n");
         }
+        sb.append(secretary.toString()).append("\n");
         sb.append("\nSessions Data:\n");
         for (Session session : sessions) {
             sb.append(session.toString()).append("\n");
@@ -114,9 +126,6 @@ public class Gym {
     }
     public List<Client>getClients(){
         return this.clients;
-    }
-    public void updateGymBalance(int newBalance){
-        this.gymBalance=newBalance;
     }
 
 }
