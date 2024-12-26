@@ -83,6 +83,7 @@ public class Gym {
         for (Session session : sessions) {
             sb.append(session.toString()).append("\n");
         }
+        sb.deleteCharAt(sb.lastIndexOf("\n"));
         return sb.toString();
     }
 

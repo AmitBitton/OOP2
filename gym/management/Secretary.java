@@ -70,7 +70,6 @@ public class Secretary extends Person {
         }
         for (Client c : Gym.getInstance().getClients()) {
             if (c.getId() == person.getId()) {
-                // Gym.getInstance().addAction("Error: The client is already registered");
                 throw new DuplicateClientException("Error: The client is already registered");
             }
         }
@@ -89,7 +88,6 @@ public class Secretary extends Person {
             return;
         }
         if (!Gym.getInstance().getClients().contains(client)) {
-            //Gym.getInstance().addAction("Error: Registration is required before attempting to unregister");
             throw new ClientNotRegisteredException("Error: Registration is required before attempting to unregister");
         }
         Gym.getInstance().addAction("Unregistered client: " + client.getName());
@@ -108,7 +106,6 @@ public class Secretary extends Person {
             return;
         }
         if (!Gym.getInstance().getClients().contains(client)) {
-            //Gym.getInstance().addAction("Error: The client is not registered with the gym and cannot enroll in lessons");
             throw new ClientNotRegisteredException("Error: The client is not registered with the gym and cannot enroll in lessons");
         }
         if (session.isRegisterForSession(client)) {
