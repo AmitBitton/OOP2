@@ -18,6 +18,7 @@ public class Gym {
     private Map<Integer,Integer> balanceIDMap=new HashMap<>();
     private Notifyer notifyer= new Notifyer();
 
+    //singleton design pattern
     private Gym() {
         this.name="CrossFit";
     }

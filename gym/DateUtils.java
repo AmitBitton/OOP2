@@ -1,6 +1,5 @@
 package gym;
 
-import gym.management.Sessions.Session;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

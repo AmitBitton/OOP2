@@ -13,7 +13,6 @@ import java.util.*;
 
 public class Secretary extends Person {
     private int salary;
-    private Person person;
 
     public Secretary(Person person, int salary) {
         super(person.getName(), person.getBalance(), person.getGender(), person.getBirthDate());
@@ -139,7 +138,6 @@ public class Secretary extends Person {
             this.addBalance(this.salary);
         }
 
-        //instructors
         int instructorSalary, numOfSessions, allInstructorsSalary = 0;
         for (Instructor instructor : Gym.getInstance().getInstructors()) {
             numOfSessions = 0;
@@ -171,14 +169,10 @@ public class Secretary extends Person {
             return null;
         }
         if (!instructor.getCertifiedClassescertifiedClasses().contains(sessionType)) {
-            // Gym.getInstance().addAction("Error: Instructor is not qualified to conduct this session type.");
             throw new InstructorNotQualifiedException();
         }
         LocalDateTime stringToTime = DateUtils.timeToString(date);
-//        if (!DateUtils.isInTheFuture(stringToTime)) {
-//            Gym.getInstance().addAction("Failed registration: Session is not in the future");
-//            return null;
-//        }
+
         Session newSession = SessionFactory.createSession(sessionType, stringToTime, forum, instructor);
         Gym.getInstance().addAction("Created new session: " + sessionType + " on " + stringToTime + " with instructor: " + instructor.getName());
         Gym.getInstance().getSessions().add(newSession);

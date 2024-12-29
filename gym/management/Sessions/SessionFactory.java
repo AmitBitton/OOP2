@@ -5,6 +5,7 @@ import gym.management.Instructor;
 import java.time.LocalDateTime;
 
 public class SessionFactory {
+    //Factory design pattern
     public static Session createSession(String sessionType, LocalDateTime date, ForumType forumType, Instructor instructor) {
         Session session = null;
         if (sessionType.equals(SessionType.Pilates)) {

@@ -38,7 +38,7 @@ public class Person {
         }
         Gym.getInstance().addPerson(this);
     }
-
+    //copy constructor
     public Person(Person person) {
         this.name = person.getName();
         this.balance = person.getBalance();

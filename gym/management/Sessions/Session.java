@@ -1,8 +1,7 @@
 package gym.management.Sessions;
 
 import gym.DateUtils;
-import gym.Exception.DuplicateClientException;
-import gym.Exception.InvalidAgeException;
+
 import gym.customers.Client;
 import gym.management.Instructor;
 

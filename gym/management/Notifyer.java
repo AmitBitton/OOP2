@@ -11,6 +11,7 @@ import java.util.*;
 
 public class Notifyer extends Subject {
 
+    //Observer design pattern
     public void notifyClientsByDate(String message, String date) {
         LocalDate realDate = DateUtils.stringToDate(date);
         clientSet.stream()
